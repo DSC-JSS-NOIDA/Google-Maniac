@@ -1,0 +1,88 @@
+{% extends 'partials/base.html' %}
+{% load static %}
+{% block content %}
+<div class="reg-wrapper">
+		<div class="row reg-form">
+				<h4 class="center-align">Register Here</h4>
+				<p class="center-align">Already Register?? <a href="/login">Login</a></p>
+			    <form id="registration-form" action="" method="post" onsubmit="return checkPasswords()">
+			    {% csrf_token %}
+			      <div class="row">
+			      	{% if error %}
+						<p class="center-align" id="error-msg"><i class="material-icons tiny prefix">warning</i>{{ error }}</p>
+			      	{% endif %}
+			        <div class="input-field col l6 m6 s12">
+			        	<i class="material-icons prefix">person_pin</i>
+						<input id="username" type="text" name="username" class="validate" required>
+			          	<label for="username">Username</label>
+			        </div>
+			      
+			      	<div class="input-field col l6 m6 s12">
+			        	<i class="material-icons prefix">person</i>
+						<input id="name" type="text" name="name" class="validate" required>
+			          	<label for="name">Your Name</label>
+			        </div>
+			      
+			        <div class="input-field col l6 m6 s12">
+			        	<i class="material-icons prefix">email</i>
+						<input id="email" type="email" name="email" class="validate" required>
+			          	<label for="email">Email</label>
+			        </div>
+			      
+			        <div class="input-field col l6 m6 s12">
+			        	<i class="material-icons prefix">call</i>
+						<input id="contact" type="text" name="phno" class="validate" maxlength="10" pattern="\d{10}" required>
+			          	<label for="contact">Contact Number</label>
+			        </div>
+			      
+			        <div class="input-field col s12">
+			        	<i class="material-icons prefix">school</i>
+						<input id="college" type="text" name="college" class="validate" required>
+			          	<label for="college">College Name</label>
+			        </div>
+			      
+			        <div class="input-field col l6 m6 s12">
+			        	<i class="material-icons prefix">lock</i>
+						<input id="password_1" type="password" name="password" class="validate" required>
+			         	 <label for="password_!">Password</label>
+			        </div>
+			      
+			        <div class="input-field col l6 m6 s12">
+			        	<i class="material-icons prefix">lock</i>
+						<input id="password_2" type="password" name="password_2" class="validate" required onkeyup="checkPass(); return false;">
+			          	<label for="password_2">Confirm Password</label>
+			        </div>
+			        <div class="input-field col s6">
+			            <span id="confirmMessage" class="confirmMessage"></span>
+			        </div>
+			      </div>
+			      <div class="row">
+			        <div class="input-field col s12 center-align">
+						<input id="reg-submit" type="submit" value="register">
+			        </div>
+			      </div>
+			    </form>
+		</div>
+</div>
+<div class="clearfix"></div>
+<script type="text/javascript">
+function checkPass()
+{
+    var pass1 = document.getElementById('password_1');
+    var pass2 = document.getElementById('password_2');
+    var message = document.getElementById('confirmMessage');
+    var goodColor = "#66cc66";
+    var badColor = "#ff6666";
+    if(pass1.value == pass2.value){
+        pass2.style.backgroundColor = goodColor;
+        message.style.color = goodColor;
+        message.innerHTML = "Passwords Match!"
+    }else{
+        pass2.style.backgroundColor = badColor;
+        message.style.color = badColor;
+        message.innerHTML = "Passwords do not match!"
+    }
+}  
+
+</script>
+{% endblock %}

@@ -1,0 +1,36 @@
+{% extends 'partials/base.html' %}
+{% load static %}
+{% block content %}
+<div class="reg-wrapper">
+		<div class="row reg-form">
+			<h4 class="center-align">Login</h4>
+			<p class="center-align">Not Registered Yet?? <a href="/register">Register</a></p>
+			<form class="col s12" method="post" action="">
+			{% csrf_token %}
+		      	<div class="row">
+		      	{% if error %}
+						<p class="center-align" id="error-msg"><i class="material-icons tiny prefix">warning</i>{{error}}</p>
+				{% endif %}
+			        <div class="input-field col s12">
+			        	<i class="material-icons prefix">person_pin</i>
+						<input id="username" type="text" name="username" class="validate">
+			          	<label for="username">Username</label>
+			        </div>
+			    </div>
+			    <div class="row">
+			        <div class="input-field col s12">
+			        	<i class="material-icons prefix">lock</i>
+						<input id="password_1" type="password" name="password" class="validate">
+			         	<label for="password_!">Password</label>
+			        </div>
+			    </div>
+			    <div class="row">
+			        <div class="input-field col s12 center-align">
+						<input id="log-submit" type="submit" value="Log In">
+			        </div>
+			    </div>
+		    </form>
+		</div>
+</div>
+<div class="clearfix"></div>
+{% endblock %}

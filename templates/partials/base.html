@@ -1,0 +1,30 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link href='https://fonts.googleapis.com/css?family=Noto+Serif:400,700italic' rel='stylesheet' type='text/css'>
+		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+		<link rel="stylesheet" type="text/css" href="{% static 'css/materialize.min.css' %}">
+		<link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+
+		<script src="https://code.jquery.com/jquery-1.12.3.min.js"></script>
+		<script src="{% static 'js/materialize.min.js' %}"></script>
+		<script src="{% static 'js/init.js' %}"></script>
+	</head>
+	<body>
+	{% include 'partials/nav.html' %}
+		{% block content %}
+		{% endblock %}
+		  {% if error %}
+		  <div class="alert alert-danger">
+		    <a href="#" class="close" data-dismiss="alert">&times;</a>
+		    <strong>Error!</strong> {{ error }}
+		  </div>
+		  {% endif %}
+	{% include 'partials/footer.html' %}
+	</body>
+</html>
